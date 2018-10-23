@@ -12,6 +12,7 @@ module.exports = function (passport) {
     res.render('login', {
       errorlogin: 'null'
     });
+    
   });
   
   router.post('/login1', userController.checklogin);
