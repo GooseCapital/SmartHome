@@ -49,16 +49,10 @@
                                             <a href="/users/auth/facebook" class="btn btn-just-icon btn-simple">
                                                 <i class="fa fa-facebook-square"></i>
                                             </a>
-                                            <a href="login.html#pablo" class="btn btn-just-icon btn-simple">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                            <a href="login.html#eugen" class="btn btn-just-icon btn-simple">
-                                                <i class="fa fa-google-plus"></i>
-                                            </a>
                                         </div>
                                     </div>
                                     <p class="category text-center">
-                                        Or Be Classical
+                                        Hoặc theo cách truyền thống
                                     </p>
                                     <div class="card-content">
                                         <div class="input-group">
@@ -81,12 +75,12 @@
                                         </div>
                                     </div>
                                     <div class="footer text-center">
-                                        <button type="submit" class="btn btn-rose btn-simple btn-wd btn-lg">Let's go</button>
+                                        <button type="submit" class="btn btn-rose btn-simple btn-wd btn-lg">Đăng nhập</button>
                                     </div>
 
-                                    <% if (errorlogin != 'null') { %>
+                                    <% if (failureFlash != 'null') { %>
                                         <p class="category text-center" style="color:red; font-size: 14pt">
-                                                <%= errorlogin %>
+                                                <%= failureFlash %>
                                             </p>
                                       <% } %>
                                 </div>

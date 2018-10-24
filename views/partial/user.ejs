@@ -1,11 +1,15 @@
 <div class="user">
     <% if (user != null) {%>
     <div class="photo">
-        <img src= <%= user.image %>>
+        <img src=<%=user.image %>>
     </div>
     <div class="info">
-        <a data-toggle="collapse" href="/#collapseExample" class="collapsed">
+        <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+            <% if(typeof user.fbName == 'undefined') {%>
             <%= user.fbName %>
+            <% } else {%>
+            <%= user.username %>
+            <%}%>
             <b class="caret"></b>
         </a>
         <div class="collapse" id="collapseExample">
@@ -20,7 +24,6 @@
         </div>
     </div>
     <% } else { %>
-        <meta http-equiv="refresh" 
-        content="0; url=/users/login">
-        <% } %>
+    <meta http-equiv="refresh" content="0; url=/users/login">
+    <% } %>
 </div>

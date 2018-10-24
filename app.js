@@ -9,6 +9,7 @@ var passport = require('passport');
 var indexRouter = require('./routes/index')();
 var usersRouter = require('./routes/users')(passport);
 
+
 var app = express();
 //create session to save userlogin
 app.use(session({
@@ -16,6 +17,7 @@ app.use(session({
   saveUninitialized: true,
   resave: true
 }))
+
 require ('./model/passport')(passport);
 //Create passport to auth
 app.use(passport.initialize());

@@ -10,11 +10,10 @@ module.exports = function (passport) {
 
   router.get('/login', isLogin, function (req, res) {
     res.render('login', {
-      errorlogin: 'null'
+      failureFlash: 'null'
     });
-    
   });
-  
+
   router.post('/login1', userController.checklogin);
 
   router.get('/logout', function (req, res) {
@@ -24,12 +23,14 @@ module.exports = function (passport) {
 
   router.post('/login', isLogin, passport.authenticate('local', {
     successRedirect: "/",
-    failureRedirect: "/users/login"
+    failureRedirect: "/users/login",
   }));
+
   // users/auth/facebook
   router.get('/auth/facebook', passport.authenticate('facebook', {
     scope: ['public_profile', 'email']
   }));
+
   // users/auth/facebook/callback
   router.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
@@ -37,8 +38,14 @@ module.exports = function (passport) {
       failureRedirect: '/'
     }));
 
-  return router;
+  router.post('/register', isLogin, userController.register);
 
+  router.get('/register', isLogin, (req, res) => {
+    res.render('register', {
+      failureFlash: 'null'
+    });
+  })
+  return router;
 }
 
 function isLogin(req, res, next) {

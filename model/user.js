@@ -1,4 +1,4 @@
-function User(id, username, password, email, fbid, image, fbName) {
+function User(id, username, password, email, fbid, image, fbName, role) {
     this.id = id;
     this.username = username;
     this.password = password;
@@ -6,28 +6,11 @@ function User(id, username, password, email, fbid, image, fbName) {
     this.fbid = fbid;
     this.image = image;
     this.fbName = fbName;
+    this.role = role;
 }
 
 User.prototype = {
-    contructor: User,
-    getId: () => {
-        return this.id
-    },
-    getPassword: () => {
-        return this.password
-    },
-    getEmail: () => {
-        return this.email
-    },
-    getFbid: () => {
-        return this.fbid
-    },
-    getImage: () => {
-        return this.image
-    },
-    getfbName: () =>{
-        return this.fbName
-    }
+    contructor: User
 }
 
 module.exports = User;
