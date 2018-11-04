@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<% include ../partial/header.ejs %>
+
+<body>
+    <div class="wrapper">
+        <% include ../partial/slidebar.ejs %>
+        <% include ../partial/content1.ejs %>
+
+        <div class="card">
+            <div class="card-header card-header-icon" data-background-color="rose">
+                <i class="material-icons">contacts</i>
+            </div>
+            <div class="card-content">
+                <h4 class="card-title">Thêm thiết bị</h4>
+                <div class="form-group label-floating is-empty">
+                    <label class="control-label">Tên thiết bị
+                        <star>*</star>
+                    </label>
+                    <input class="form-control" id="name" type="text" email="true" required="true" aria-required="true">
+                    <span class="material-input"></span></div>
+
+                <select id="type" class="selectpicker" data-style="btn btn-primary btn-round" title="Chọn loại thiết bị"
+                    data-size="7" tabindex="-98">
+                    <option class="bs-title-option" value="">Chọn thiết bị</option>
+                    <option disabled="">Chọn thiết bị</option>
+                    <option value="1" selected="">Switch</option>
+                    <option value="2">Value update</option>
+                </select>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-rose btn-fill" onclick="showSwal()">Thêm thiết bị<div class="ripple-container"></div></button>
+            </div>
+        </div>
+    </div>
+
+    <% include ../partial/content2.ejs %>
+    </div>
+</body>
+<% include ../partial/script.ejs %>
+<script type="text/javascript">
+    function makeid() {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for (var i = 0; i < 5; i++)
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        return text;
+    }
+
+    function showSwal() {
+        if ($("#name").val() == "") return;
+        swal({
+            title: 'Bạn chắc chắn thêm chứ?',
+            text: 'Tên thiết bị: ' + $("#name").val(),
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Xác nhận',
+            cancelButtonText: 'Huỷ',
+            confirmButtonClass: "btn btn-success",
+            cancelButtonClass: "btn btn-danger",
+            buttonsStyling: false
+        }).then(function () {
+            send()
+        }, function (dismiss) {
+            // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+            if (dismiss === 'cancel') {
+                swal({
+                    title: 'Đã huỷ',
+                    text: 'Bạn đã huỷ thao tác :D',
+                    type: 'error',
+                    confirmButtonClass: "btn btn-info",
+                    buttonsStyling: false
+                })
+            }
+        })
+    }
+
+    function send() {
+        var e = document.getElementById("type");
+        var type = e.options[e.selectedIndex].value;
+        var n = Math.round(new Date().getTime() / 1000);
+        var device = {
+            name: $("#name").val(),
+            type: type,
+            id_device: $.md5(n),
+            security_code: makeid()
+        }
+
+        $.ajax({
+            url: 'api/addDevice',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                console.log(data);
+                if (data.status == 0) {
+                    swal({
+                        title: 'Thành công!',
+                        text: 'Mã thiết bị: ' + data.message.id_device + "\r\nMã bảo mật: " + data.message
+                            .security_code,
+                        type: 'success',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    })
+                } else {
+                    swal({
+                        title: 'Lỗi!',
+                        text: data.message,
+                        type: 'error',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    })
+                }
+            },
+            data: JSON.stringify(device)
+        });
+    }
+</script>
+
+</html>

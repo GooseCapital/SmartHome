@@ -6,7 +6,8 @@ var pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'smarthome'
+    database: 'smarthome',
+    multipleStatements: true
 });
 pool.getConnection((err, connection) => {
     if (err) {
@@ -23,11 +24,16 @@ pool.getConnection((err, connection) => {
     if (connection) connection.release()
     return
 });
+pool.on('error', function(err) {
+    console.log("[mysql error]",err);
+  });
 
 pool.query = util.promisify(pool.query) // Magic happens here.
 module.exports = pool;
 
+
 module.exports.addFbUser = async (user) => {
-    let query = `INSERT INTO users (email, fbid, image, fbName) VALUES ('${user.email}', ${user.fbid}, '${user.image}', '${user.fbName}')`;
+    let query = `INSERT INTO users (email, fbid, image, fbName, role, timeJoin) VALUES ('${user.email}', ${user.fbid}, '${user.image}', '${user.fbName}', 1, ${Math.round(new Date().getTime()/1000)})`;
     await pool.query(query);
 };
+

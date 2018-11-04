@@ -33,33 +33,6 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
                     <p class="hidden-lg hidden-md">Dashboard</p>
                 </a>
             </li>
-            <li class="dropdown">
-                <a href="dashboard.html#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="material-icons">notifications</i>
-                    <span class="notification">5</span>
-                    <p class="hidden-lg hidden-md">
-                        Notifications
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="dashboard.html#">Mike John responded to your email</a>
-                    </li>
-                    <li>
-                        <a href="dashboard.html#">You have 5 new tasks</a>
-                    </li>
-                    <li>
-                        <a href="dashboard.html#">You're now friend with Andrew</a>
-                    </li>
-                    <li>
-                        <a href="dashboard.html#">Another Notification</a>
-                    </li>
-                    <li>
-                        <a href="dashboard.html#">Another One</a>
-                    </li>
-                </ul>
-            </li>
             <li>
                 <a href="dashboard.html#pablo" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="material-icons">person</i>
@@ -69,83 +42,35 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
             <li class="separator hidden-lg hidden-md"></li>
         </ul>
         <ul class="nav">
-            <li class="active">
+            <li <% if(typeof mainSlidebar=='undefined' ) {%>
+                class = "active"
+                <% }%> >
                 <a href="dashboard.html">
                     <i class="material-icons">dashboard</i>
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li>
-                <a data-toggle="collapse" href="dashboard.html#pagesExamples">
-                    <i class="material-icons">image</i>
-                    <p>Pages
+            <li <% if (typeof mainSlidebar !='undefined' ) { if (mainSlidebar=="device" ){ %>
+                aria-expanded="true"
+                <%} else {%>
+                class="collapse"
+                <% }} %>
+                >
+                <a data-toggle="collapse" <% if (typeof mainSlidebar !='undefined' ) { if (mainSlidebar=="device" ){ %>
+                    aria-expanded="true"
+                    <%} else {%>
+                    class="collapse"
+                    <% }} %> href="#device">
+                    <i class="material-icons">perm_device_information</i>
+                    <p>Quản lý thiết bị
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="pagesExamples">
-                    <ul class="nav">
-                        <li>
-                            <a href="pages/pricing.html">Pricing</a>
-                        </li>
-                        <li>
-                            <a href="pages/timeline.html">Timeline</a>
-                        </li>
-                        <li>
-                            <a href="pages/login.html">Login Page</a>
-                        </li>
-                        <li>
-                            <a href="pages/register.html">Register Page</a>
-                        </li>
-                        <li>
-                            <a href="pages/lock.html">Lock Screen Page</a>
-                        </li>
-                        <li>
-                            <a href="pages/user.html">User Profile</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="dashboard.html#componentsExamples">
-                    <i class="material-icons">apps</i>
-                    <p>Components
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="componentsExamples">
-                    <ul class="nav">
-                        <li>
-                            <a href="components/buttons.html">Buttons</a>
-                        </li>
-                        <li>
-                            <a href="components/grid.html">Grid System</a>
-                        </li>
-                        <li>
-                            <a href="components/panels.html">Panels</a>
-                        </li>
-                        <li>
-                            <a href="components/sweet-alert.html">Sweet Alert</a>
-                        </li>
-                        <li>
-                            <a href="components/notifications.html">Notifications</a>
-                        </li>
-                        <li>
-                            <a href="components/icons.html">Icons</a>
-                        </li>
-                        <li>
-                            <a href="components/typography.html">Typography</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="dashboard.html#formsExamples">
-                    <i class="material-icons">content_paste</i>
-                    <p>Forms
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="formsExamples">
+                <div <% if(typeof mainSlidebar !='undefined' ) {%>
+                    class="collapse in" aria-expanded="true"
+                    <% } else { %>
+                    class="collapse"
+                    <% }%> id="device">
                     <ul class="nav">
                         <li>
                             <a href="forms/regular.html">Regular Forms</a>
@@ -162,67 +87,8 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
                     </ul>
                 </div>
             </li>
-            <li>
-                <a data-toggle="collapse" href="dashboard.html#tablesExamples">
-                    <i class="material-icons">grid_on</i>
-                    <p>Tables
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="tablesExamples">
-                    <ul class="nav">
-                        <li>
-                            <a href="tables/regular.html">Regular Tables</a>
-                        </li>
-                        <li>
-                            <a href="tables/extended.html">Extended Tables</a>
-                        </li>
-                        <li>
-                            <a href="tables/datatables.net.html">DataTables.net</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="dashboard.html#mapsExamples">
-                    <i class="material-icons">place</i>
-                    <p>Maps
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="mapsExamples">
-                    <ul class="nav">
-                        <li>
-                            <a href="maps/google.html">Google Maps</a>
-                        </li>
-                        <li>
-                            <a href="maps/fullscreen.html">Full Screen Map</a>
-                        </li>
-                        <li>
-                            <a href="maps/vector.html">Vector Map</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a href="widgets.html">
-                    <i class="material-icons">widgets</i>
-                    <p>Widgets</p>
-                </a>
-            </li>
-            <li>
-                <a href="charts.html">
-                    <i class="material-icons">timeline</i>
-                    <p>Charts</p>
-                </a>
-            </li>
-            <li>
-                <a href="calendar.html">
-                    <i class="material-icons">date_range</i>
-                    <p>Calendar</p>
-                </a>
-            </li>
         </ul>
+
         <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
             <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
         </div>

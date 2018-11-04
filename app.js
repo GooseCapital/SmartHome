@@ -8,7 +8,8 @@ var passport = require('passport');
 
 var indexRouter = require('./routes/index')();
 var usersRouter = require('./routes/users')(passport);
-
+var deviceRouter = require('./routes/device')(passport);
+var apiRouter = require('./routes/api')(passport);
 
 var app = express();
 //create session to save userlogin
@@ -37,7 +38,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
+app.use('/device', deviceRouter);
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
