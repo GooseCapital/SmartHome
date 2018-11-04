@@ -1,3 +1,3 @@
 # SmartHome
-NodeJS \r\n
+NodeJS
 A repo to self learning NodeJS
