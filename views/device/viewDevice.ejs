@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<% include ../partial/header.ejs %>
+
+<body>
+    <div class="wrapper">
+        <% include ../partial/slidebar.ejs %>
+        <% include ../partial/content1.ejs %>
+
+        <div class="card">
+            <div class="card-header card-header-icon" data-background-color="rose">
+                <i class="material-icons">assignment</i>
+            </div>
+            <h4 class="card-title">Simple Table</h4>
+            <div class="card-content">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th>Mã thiết bị</th>
+                                <th>Tên thiết bị</th>
+                                <th>Thời gian tạo</th>
+                                <th>Người tạo</th>
+                                <th>Kiểu thiết bị</th>
+                                <th class="text-right">Tuỳ chọn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% let count = 1; data.forEach(function(row){ %>
+                            <tr>
+                                <td class="text-center">
+                                    <%= count %>
+                                </td>
+                                <td>
+                                    <%= row.id_device %>
+                                </td>
+                                <td>
+                                    <%= row.name %>
+                                </td>
+                                <td>
+                                    <%= row.create_date %>
+                                </td>
+                                <td>
+                                    <%= row.user_id %>
+                                </td>
+                                <td>
+                                    <%= row.type %>
+                                </td>
+                                <% count++ %>
+                            </tr>
+                            <% }) %>
+                            <tr>
+                                <td class="text-center">2</td>
+                                <td>John Doe</td>
+                                <td>Design</td>
+                                <td>2012</td>
+                                <td>&euro; 89,241</td>
+                                <td class="td-actions text-right">
+                                    <button type="button" rel="tooltip" class="btn btn-info btn-round">
+                                        <i class="material-icons">person</i>
+                                    </button>
+                                    <button type="button" rel="tooltip" class="btn btn-success btn-round">
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                    <button type="button" rel="tooltip" class="btn btn-danger btn-round">
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+        <% include ../partial/content2.ejs %>
+    </div>
+</body>
+<% include ../partial/script.ejs %>
+
+</html>

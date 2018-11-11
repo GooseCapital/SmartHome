@@ -45,7 +45,7 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
             <li <% if(typeof mainSlidebar=='undefined' ) {%>
                 class = "active"
                 <% }%> >
-                <a href="dashboard.html">
+                <a href="/">
                     <i class="material-icons">dashboard</i>
                     <p>Dashboard</p>
                 </a>
@@ -72,11 +72,17 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
                     class="collapse"
                     <% }%> id="device">
                     <ul class="nav">
-                        <li>
-                            <a href="forms/regular.html">Regular Forms</a>
+                        <li <% if(typeof childSlidebar !='undefined' ) { if (childSlidebar=='viewDevice' ) {%>
+                            class="active"
+                            <% }}%>
+                            >
+                            <a href="../device/">Tất cả thiết bị</a>
                         </li>
-                        <li>
-                            <a href="forms/extended.html">Extended Forms</a>
+                        <li <% if(typeof childSlidebar !='undefined' ) { if (childSlidebar=='addDevice' ) {%>
+                            class="active"
+                            <% }}%>
+                            >
+                            <a href="../device/addDevice">Thêm thiết bị</a>
                         </li>
                         <li>
                             <a href="forms/validation.html">Validation Forms</a>
@@ -88,13 +94,6 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
                 </div>
             </li>
         </ul>
-
-        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
-            <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-        </div>
-        <div class="ps-scrollbar-y-rail" style="top: 0px; height: 551px; right: 0px;">
-            <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 417px;"></div>
-        </div>
     </div>
     <div class="sidebar-background" style="background-image: url(../assets/img/sidebar-1.jpg) "></div>
 </div>
