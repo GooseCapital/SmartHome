@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="vi">
 <% include ./partial/header.ejs %>
+
 <body>
     <nav class="navbar navbar-primary navbar-transparent navbar-absolute">
         <div class="container">
@@ -41,14 +42,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                            <form method="POST" >
+                            <form method="POST">
                                 <div class="card card-login card-hidden">
                                     <div class="card-header text-center" data-background-color="rose">
                                         <h4 class="card-title">Đăng nhập</h4>
                                         <div class="social-line">
-                                            <a onclick="location.href='/users/auth/facebook'" class="btn btn-just-icon btn-round btn-facebook">
+                                            <p onclick="location.href='/users/auth/facebook'" class="btn btn-just-icon btn-round btn-facebook">
                                                 <i class="fa fa-facebook"> </i>
-                                            </a>
+                                            </p>
                                         </div>
                                     </div>
                                     <p class="category text-center">
@@ -79,10 +80,10 @@
                                     </div>
 
                                     <% if (failureFlash != 'null') { %>
-                                        <p class="category text-center" style="color:red; font-size: 14pt">
-                                                <%= failureFlash %>
-                                            </p>
-                                      <% } %>
+                                    <p class="category text-center" style="color:red; font-size: 14pt">
+                                        <%= failureFlash %>
+                                    </p>
+                                    <% } %>
                                 </div>
                             </form>
                         </div>
@@ -96,13 +97,14 @@
 </body>
 <% include ./partial/script.ejs %>
 <script type="text/javascript">
-    $().ready(function() {
+    $().ready(function () {
         demo.checkFullPageBackgroundImage();
 
-        setTimeout(function() {
+        setTimeout(function () {
             // after 1000 ms we add the class animated to the login/register card
             $('.card').removeClass('card-hidden');
         }, 700)
     });
 </script>
+
 </html>
