@@ -1,23 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var apiController = require('../controllers/apiController');
+var helper = require('../helper');
 
 module.exports = function () {
-  router.get('/', isLogin, function (req, res) {
-    let callback;
-    apiController.viewDevice(callback)
-    console.log(callback);
-    res.render('../views/device/viewDevice', async() =>{
-      return {
-        mainSlidebar: 'device',
+  router.get('/', helper.CheckLogin, function (req, res) {
+    res.render('../views/device/viewDevice', {
+      mainSlidebar: 'device',
         childSlidebar: 'viewDevice',
-        user: req.user,
-        data: await apiController.viewDevice
-      }
+        user: req.user
     });
   });
 
-  router.get('/addDevice', isLogin, function (req, res) {
+  router.get('/addDevice', helper.CheckLogin, function (req, res) {
     res.render('../views/device/addDevice', {
       mainSlidebar: 'device',
       childSlidebar: 'addDevice',
@@ -25,11 +19,4 @@ module.exports = function () {
     });
   });
   return router;
-}
-
-function isLogin(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  } else
-    res.redirect('/users/login');
 }

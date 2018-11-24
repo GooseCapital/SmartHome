@@ -1,17 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var helper = require('../helper')
 
 module.exports = function ()
 {
-  router.get('/',isLogin ,function (req, res) {
+  router.get('/', helper.CheckLogin ,function (req, res) {
     res.render('dashboard', {user: req.user});
   });
   return router;
-}
-
-function isLogin (req, res, next) {
-  if (req.isAuthenticated()) {
-      return next();
-  } else
-      res.redirect('/users/login');
 }
